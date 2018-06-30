@@ -38,7 +38,7 @@ bedfile.sh
 ## IN: radsites.bed
 ## IN: bam.list
 ## IN: Sorted, de-duplicates removed BAMs
-16.4.18.freebayes.array.sh
+4_16.4.18.freebayes.array.sh
 ## vcf for each scaffold
 
 
