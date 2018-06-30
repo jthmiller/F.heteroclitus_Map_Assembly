@@ -1,0 +1,56 @@
+
+
+## Demultiplex 
+## IN: Raw reads
+1_16.4.18.process_radtags.sh
+## OUT: Paired-end, demultiplexed reads for each barcode
+
+## Alignment
+## IN: Paired-end, demultiplexed reads for each barcode
+2_16.4.18.array.align.RUN1.sh
+2_16.4.18.array.align.RUN2.sh
+## OUT: Sorted, de-duplicates removed BAMs
+
+## Make a list of bams 
+find ../alignment/RUN2.1.bams/ ../alignment/RUN2.2.bams/ -name "*.bam" > bam.list
+## OUT: list of bams
+
+## Determine depth for ech position in alignment
+## IN: Sorted, de-duplicates removed BAMs
+## IN: list of bams
+3_site.depth.bamtools.sh
+## OUT: site.depth.txt
+
+site.depth.txt > unfiltered.bed
+
+## Plot in R the depth
+## IN: unfiltered.bed (large file)
+bed.depth.R
+## OUT: plot TotalCoveragePerBaseinRefGenome.pdf
+## OU: Theshold values
+
+## Filter bedfile to RAD sites determines from
+## IN: site.depth.txt
+bedfile.sh 
+## OUT:radsites.bed
+
+## Merge and call SNPs
+## IN: radsites.bed
+## IN: bam.list
+## IN: Sorted, de-duplicates removed BAMs
+16.4.18.freebayes.array.sh
+## vcf for each scaffold
+
+
+Scripts
+filter vcf 
+
+FILES
+site.depth (binary
+
+
+
+
+
+
+
